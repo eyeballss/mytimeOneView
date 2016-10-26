@@ -1,10 +1,7 @@
 package me.blog.eyeballs.mytimeoneview;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -12,8 +9,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 import me.blog.eyeballs.mytimeoneview.list.Adapter;
@@ -33,41 +28,17 @@ public class StoreListActivity extends AppCompatActivity {
         jsonToJava();
         setList();
 
-        Bitmap a = show1("https://s3.amazonaws.com/mytime_prod/attachments/449/slate_black/Fotolia_29883114_Subscription_Monthly_XXL.png?1391219770");
-        ImageView b = (ImageView)findViewById(R.id.testImageView);
-        b.setImageBitmap(a);
+        TextView test = (TextView)findViewById(R.id.test);
+        test.setText(datas.get(1).getName());
+
+//        StringBuffer temp = null;
+//        temp.append(datas.get(0).getName()+"\n" +
+//                datas.get(0).getCity()+"\n"+
+//                datas.get(0).getMin_price()+"\n"+
+//                datas.get(0).getService_name());
+
 
     }
-
-    Bitmap bitmap;
-    Thread thread = null;
-    public Bitmap show1(final String u) {
-        thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                URL url = null;
-                try {
-                    url = new URL(u);
-                    InputStream inputStream = url.openStream();
-
-                    bitmap = BitmapFactory.decodeStream(inputStream);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        return bitmap;
-    }
-
-
-
-
-
-
-
-
-
 
 
 

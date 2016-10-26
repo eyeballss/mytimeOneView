@@ -91,8 +91,8 @@ public class Data {
         return info.getService_name();
     }
 
-    public ArrayList<String> getServiceName() {
-        return info.getServiceName();
+    public ArrayList<String> getServiceNames() {
+        return info.getServiceNames();
     }
 
     public ArrayList<String> getDuration() {
@@ -274,7 +274,7 @@ class Info {
 
     private String photo_url;
     private String name;
-    private ArrayList<String> ServiceName = new ArrayList<String>();
+    private ArrayList<String> ServiceNames = new ArrayList<String>();
     private ArrayList<String> duration = new ArrayList<String>();
 
     private String street_address;
@@ -445,8 +445,8 @@ class Info {
     }
 
 
-    public ArrayList<String> getServiceName() {
-        return ServiceName;
+    public ArrayList<String> getServiceNames() {
+        return ServiceNames;
     }
 
     public ArrayList<String> getDuration() {
@@ -462,7 +462,7 @@ class Info {
     }
 
     public void addServiceName(String str) {
-        this.ServiceName.add(str);
+        this.ServiceNames.add(str);
     }
 
     public void addDuration(String str) {
