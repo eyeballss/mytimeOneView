@@ -2,6 +2,7 @@ package me.blog.eyeballs.mytimeoneview.stores_list;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import me.blog.eyeballs.mytimeoneview.Data;
+import me.blog.eyeballs.mytimeoneview.DetailPage;
 import me.blog.eyeballs.mytimeoneview.R;
 import me.blog.eyeballs.mytimeoneview.ShowWebImage;
 
@@ -20,7 +22,6 @@ import me.blog.eyeballs.mytimeoneview.ShowWebImage;
  */
 public class Adapter extends BaseAdapter {
 
-    private ShowWebImage showWebImage;
     private Activity context;
     private ArrayList<Data> datas;
     private LayoutInflater inflater;
@@ -88,6 +89,32 @@ public class Adapter extends BaseAdapter {
             }
 
         }
+
+        setClickListners(i, storeName, thumbnail);
+
+    }
+
+    private void setClickListners(final int i, TextView storeName, ImageView thumbnail){
+        storeName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDetailPage(i);
+            }
+        });
+
+        thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDetailPage(i);
+
+            }
+        });
+    }
+
+    private void showDetailPage(int i){
+
+        Intent intent = new Intent(context, DetailPage.class);
+        context.startActivity(intent);
 
     }
 
