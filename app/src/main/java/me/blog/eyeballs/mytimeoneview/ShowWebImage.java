@@ -35,8 +35,6 @@ public class ShowWebImage extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected void onPostExecute(Bitmap result) {
-        if(bmImage==null) return;
-
         bmImage.setImageBitmap(result);
     }
 }

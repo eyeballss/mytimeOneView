@@ -481,7 +481,7 @@ class Info {
 class MyTime {
 
     private Double rating;
-    private int review_count;
+    private int review_count=-1;
 
     public Double getRating() {
         return rating;
@@ -504,7 +504,7 @@ class Yelp {
 
     private Double rating;
     private String rating_image_url;
-    private int review_count;
+    private int review_count=-1;
     private String url;
 
     public Double getRating() {

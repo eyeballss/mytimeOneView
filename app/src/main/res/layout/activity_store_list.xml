@@ -9,13 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="me.blog.eyeballs.mytimeoneview.StoreListActivity">
 
-    <TextView
-        android:id="@+id/test"
-        android:text="lol"
-        android:textSize="20dp"
-        android:layout_width="110dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="100dp"/>
     <ListView
         android:id="@+id/store_listview"
         android:layout_width="match_parent"

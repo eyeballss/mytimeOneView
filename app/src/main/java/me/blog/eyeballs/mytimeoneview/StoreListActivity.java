@@ -11,7 +11,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import me.blog.eyeballs.mytimeoneview.list.Adapter;
+import me.blog.eyeballs.mytimeoneview.stores_list.Adapter;
 
 public class StoreListActivity extends AppCompatActivity {
     static ArrayList<Data> datas;
@@ -27,9 +27,6 @@ public class StoreListActivity extends AppCompatActivity {
 
         jsonToJava();
         setList();
-
-        TextView test = (TextView)findViewById(R.id.test);
-        test.setText(datas.get(1).getName());
 
 //        StringBuffer temp = null;
 //        temp.append(datas.get(0).getName()+"\n" +

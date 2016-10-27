@@ -5,8 +5,15 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/c"
+        android:id="@+id/store_name"
         android:text="blah blah store"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:marqueeRepeatLimit="3"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_margin="8dp"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <LinearLayout
@@ -15,41 +22,62 @@
 
         <ImageView
             android:id="@+id/thumbnail"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_width="110dp"
-            android:layout_height="110dp"/>
+            android:layout_height="80dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginBottom="4dp">
 
             <TextView
                 android:id="@+id/city_name"
                 android:text="Irvine"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:marqueeRepeatLimit="3"
+                android:textSize="15dp"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/service_name"
                 android:text="Massage"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:marqueeRepeatLimit="3"
+                android:textSize="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/price"
                 android:text="1-1000"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:marqueeRepeatLimit="3"
+                android:textSize="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="bottom">
 
                 <ImageView
                     android:id="@+id/stars"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="80dp"
+                    android:layout_height="15dp" />
                 <TextView
                     android:id="@+id/review_count"
                     android:text="(1)"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:marqueeRepeatLimit="3"
+                    android:textSize="13dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
