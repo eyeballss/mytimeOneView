@@ -12,8 +12,9 @@
         android:marqueeRepeatLimit="3"
         android:textStyle="bold"
         android:textSize="15dp"
-        android:layout_margin="8dp"
-
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="3dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <LinearLayout
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/thumbnail"
+            android:id="@+id/store_thumbnail"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_width="110dp"
@@ -34,7 +35,7 @@
             android:layout_marginBottom="4dp">
 
             <TextView
-                android:id="@+id/city_name"
+                android:id="@+id/store_city_name"
                 android:text="Irvine"
                 android:singleLine="true"
                 android:ellipsize="end"
@@ -44,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/service_name"
+                android:id="@+id/store_service_name"
                 android:text="Massage"
                 android:singleLine="true"
                 android:ellipsize="end"
@@ -53,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/price"
+                android:id="@+id/store_price"
                 android:text="1-1000"
                 android:singleLine="true"
                 android:ellipsize="end"
@@ -68,11 +69,11 @@
                 android:gravity="bottom">
 
                 <ImageView
-                    android:id="@+id/stars"
+                    android:id="@+id/store_stars"
                     android:layout_width="80dp"
                     android:layout_height="15dp" />
                 <TextView
-                    android:id="@+id/review_count"
+                    android:id="@+id/store_review_count"
                     android:text="(1)"
                     android:singleLine="true"
                     android:ellipsize="end"

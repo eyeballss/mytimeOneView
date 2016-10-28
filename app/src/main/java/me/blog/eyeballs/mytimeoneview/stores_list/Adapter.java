@@ -10,9 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import me.blog.eyeballs.mytimeoneview.Data;
+import me.blog.eyeballs.mytimeoneview.DataAccessible;
 import me.blog.eyeballs.mytimeoneview.DetailPage;
 import me.blog.eyeballs.mytimeoneview.R;
 import me.blog.eyeballs.mytimeoneview.ShowWebImage;
@@ -20,17 +19,15 @@ import me.blog.eyeballs.mytimeoneview.ShowWebImage;
 /**
  * Created by eye on 16. 10. 25.
  */
-public class Adapter extends BaseAdapter {
+public class Adapter extends BaseAdapter implements DataAccessible{
 
     private Activity context;
-    private ArrayList<Data> datas;
     private LayoutInflater inflater;
 
-    public Adapter(Activity context, ArrayList<Data> datas) {
+    public Adapter(Activity context) {
         super();
 
         this.context = context;
-        this.datas = datas;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -53,12 +50,12 @@ public class Adapter extends BaseAdapter {
         Data data = datas.get(i); //store's data
 
         TextView storeName = (TextView) convertView.findViewById(R.id.store_name);
-        ImageView thumbnail = (ImageView) convertView.findViewById(R.id.thumbnail);
-        TextView cityName = (TextView) convertView.findViewById(R.id.city_name);
-        TextView serviceName = (TextView) convertView.findViewById(R.id.service_name);
-        TextView price = (TextView) convertView.findViewById(R.id.price);
-        ImageView stars = (ImageView) convertView.findViewById(R.id.stars);
-        TextView reviewCount = (TextView) convertView.findViewById(R.id.review_count);
+        ImageView thumbnail = (ImageView) convertView.findViewById(R.id.store_thumbnail);
+        TextView cityName = (TextView) convertView.findViewById(R.id.store_city_name);
+        TextView serviceName = (TextView) convertView.findViewById(R.id.store_service_name);
+        TextView price = (TextView) convertView.findViewById(R.id.store_price);
+        ImageView stars = (ImageView) convertView.findViewById(R.id.store_stars);
+        TextView reviewCount = (TextView) convertView.findViewById(R.id.store_review_count);
 
         storeName.setText(data.getName());
         new ShowWebImage().setImageView(thumbnail).execute(data.getDefault_photo_thumb());
@@ -72,6 +69,7 @@ public class Adapter extends BaseAdapter {
 //        holder.service_name.setText(data.getService_name());
 //        holder.price.setText(data.getMin_price()+" - "+data.getMax_price());
 
+        int reviewNumber=0;
         {
             int myTime=data.mytime_getReview_count();
             int yelp=data.yelp_getReview_count();
@@ -79,41 +77,47 @@ public class Adapter extends BaseAdapter {
             if(myTime<0 && yelp<0){
                 stars.setImageBitmap(null);
                 reviewCount.setText("");
+                reviewNumber =0;
             }
             else if(myTime>=yelp){
                 stars.setImageBitmap(null);
                 reviewCount.setText("("+data.mytime_getReview_count()+")");
+                reviewNumber=1;
             }else {
                 new ShowWebImage().setImageView(stars).execute(data.yelp_getRating_image_url());
                 reviewCount.setText("("+data.yelp_getReview_count()+")");
+                reviewNumber=2;
             }
 
         }
 
-        setClickListners(i, storeName, thumbnail);
+        setClickListners(i, storeName, thumbnail, reviewNumber);
 
     }
 
-    private void setClickListners(final int i, TextView storeName, ImageView thumbnail){
+    private void setClickListners(final int i, TextView storeName, ImageView thumbnail, final int reviewNumber){
         storeName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDetailPage(i);
+                showDetailPage(i, reviewNumber);
             }
         });
 
         thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDetailPage(i);
+                showDetailPage(i, reviewNumber);
 
             }
         });
     }
 
-    private void showDetailPage(int i){
+    private void showDetailPage(int i, int reviewNumber){
 
         Intent intent = new Intent(context, DetailPage.class);
+        intent.putExtra("dataNumber", i);
+
+        intent.putExtra("reviewNumber", reviewNumber);
         context.startActivity(intent);
 
     }
