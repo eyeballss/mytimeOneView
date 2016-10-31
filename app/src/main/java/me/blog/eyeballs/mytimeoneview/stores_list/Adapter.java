@@ -115,8 +115,11 @@ public class Adapter extends BaseAdapter implements DataAccessible{
     private void showDetailPage(int i, int reviewNumber){
 
         Intent intent = new Intent(context, DetailPage.class);
+
+        //data number : to find data in the data array.
         intent.putExtra("dataNumber", i);
 
+        //review number : to find what company's review is valuable.
         intent.putExtra("reviewNumber", reviewNumber);
         context.startActivity(intent);
 
