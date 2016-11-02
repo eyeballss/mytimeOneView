@@ -10,7 +10,6 @@ import android.widget.TextView;
 public class DetailPage extends AppCompatActivity implements DataAccessible{
 
     //이미지 보여주기 위해서 리스트뷰를 만들자. 그게 낫겠다. 혹은 클릭했을 때 새로운 창을 띄워서 보여주던가.
-
     int dataNumber;
     int reviewNumber;
     TextView detail_name, detail_review_count, detail_service_names,

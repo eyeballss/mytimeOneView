@@ -12,6 +12,7 @@ import me.blog.eyeballs.mytimeoneview.stores_list.Adapter;
 
 public class StoreListActivity extends AppCompatActivity implements DataAccessible {
 
+    //검색은 search view를 이용하면 되겠군.
     static Adapter storesListAdapter;
     ListView storesList;
 
