@@ -61,8 +61,8 @@
                 android:layout_height="30dp"></ListView>
 
             <TextView
-                android:id="@+id/detail_about_textview"
-                android:text="About this store"
+                android:id="@+id/detail_description_title_textview"
+                android:text="About this store ▼"
                 android:layout_margin="3dp"
                 android:textSize="15dp"
                 android:layout_width="match_parent"
@@ -75,37 +75,40 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/detail_business_diffrences_title_textview"
-                android:text="What What differentiates us"
+                android:text="What What differentiates us ▼"
                 android:layout_margin="3dp"
                 android:textSize="13dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/detail_business_diffrences_textview"
+                android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/detail_learning_trade_title_textview"
-                android:text="How we were trained"
+                android:text="How we were trained ▼"
                 android:layout_margin="3dp"
                 android:textSize="13dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/detail_learning_trade_textview"
+                android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/detail_why_love_title_textview"
-                android:text="Why we love what we do"
+                android:text="Why we love what we do ▼"
                 android:layout_margin="3dp"
                 android:textSize="13dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/detail_why_love_textview"
+                android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

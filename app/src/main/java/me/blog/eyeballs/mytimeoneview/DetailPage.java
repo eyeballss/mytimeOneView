@@ -3,6 +3,7 @@ package me.blog.eyeballs.mytimeoneview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ public class DetailPage extends AppCompatActivity implements DataAccessible{
     //이미지 보여주기 위해서 리스트뷰를 만들자. 그게 낫겠다. 혹은 클릭했을 때 새로운 창을 띄워서 보여주던가.
     int dataNumber;
     int reviewNumber;
-    TextView detail_name, detail_review_count, detail_about_textview, detail_description_textview;
+    TextView detail_name, detail_review_count, detail_description_textview, detail_description_title_textview;
     TextView detail_business_diffrences_textview, detail_learning_trade_textview,detail_why_love_textview;
     TextView detail_business_diffrences_title_textview, detail_learning_trade_title_textview, detail_why_love_title_textview;
     ImageView detail_stars;
@@ -36,10 +37,14 @@ public class DetailPage extends AppCompatActivity implements DataAccessible{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_page);
 
-
+        //initialize
         init();
+        //list setting
         setList();
+        //set the data into the views
         setting();
+        //to show the descriptors or not by click
+        setClickListener();
 
     }
 
@@ -57,8 +62,8 @@ public class DetailPage extends AppCompatActivity implements DataAccessible{
         detail_name = (TextView)findViewById(R.id.detail_name);
         detail_review_count = (TextView)findViewById(R.id.detail_review_count);
         detail_stars = (ImageView)findViewById(R.id.detail_stars);
-        detail_about_textview = (TextView)findViewById(R.id.detail_about_textview);
         detail_description_textview = (TextView)findViewById(R.id.detail_description_textview);
+        detail_description_title_textview = (TextView)findViewById(R.id.detail_description_title_textview);
         detail_business_diffrences_textview = (TextView)findViewById(R.id.detail_business_diffrences_textview);
         detail_learning_trade_textview = (TextView)findViewById(R.id.detail_learning_trade_textview);
         detail_why_love_textview = (TextView)findViewById(R.id.detail_why_love_textview);
@@ -86,43 +91,79 @@ public class DetailPage extends AppCompatActivity implements DataAccessible{
         detail_name.setText(data.getName());
         if(reviewNumber==1) detail_review_count.setText("("+data.mytime_getReview_count()+")");
         else if(reviewNumber==2)detail_review_count.setText("("+data.yelp_getReview_count()+")");
-        else detail_review_count.setText("");
+        else detail_review_count.setVisibility(View.GONE);
 
-        if(data.getName()!=null && !data.getName().equals("")) {
-            detail_about_textview.setText("About " + data.getName());
+        if(data.getDescription()!=null && !data.getDescription().trim().equals("")) {
+            detail_description_title_textview.setText("About " + data.getName()+" ▼");
             detail_description_textview.setText(data.getDescription());
         }else{
-            detail_about_textview.setText("");
-            detail_description_textview.setText("");
+            detail_description_textview.setVisibility(View.GONE);
+            detail_description_title_textview.setVisibility(View.GONE);
         }
 
-        if(data.getBusiness_diffrences()!=null && !data.getBusiness_diffrences().equals("") ){
+        if(data.getBusiness_diffrences()!=null && !data.getBusiness_diffrences().trim().equals("") ){
             detail_business_diffrences_textview.setText(data.getBusiness_diffrences());
         }else{
-            detail_business_diffrences_title_textview.setText("");
-            detail_business_diffrences_textview.setText("");
+            detail_business_diffrences_title_textview.setVisibility(View.GONE);
+            detail_business_diffrences_textview.setVisibility(View.GONE);
         }
 
-        if(data.getLearning_trade() !=null && !data.getLearning_trade().equals("")){
+        if(data.getLearning_trade() !=null && !data.getLearning_trade().trim().equals("")){
             detail_learning_trade_textview.setText(data.getLearning_trade());
         }else{
-            detail_learning_trade_textview.setText("");
-            detail_business_diffrences_title_textview.setText("");
+            detail_learning_trade_textview.setVisibility(View.GONE);
+            detail_learning_trade_title_textview.setVisibility(View.GONE);
         }
 
-        if(data.getWhy_love() !=null && !data.getWhy_love().equals("")){
+        if(data.getWhy_love() !=null && !data.getWhy_love().trim().equals("")){
             detail_why_love_textview.setText(data.getWhy_love());
         }else{
-            detail_why_love_textview.setText("");
-            detail_why_love_title_textview.setText("");
+            detail_why_love_textview.setVisibility(View.GONE);
+            detail_why_love_title_textview.setVisibility(View.GONE);
         }
 
-        if(data.getWhy_love() !=null && !data.getWhy_love().equals("")){
-            detail_why_love_textview.setText(data.getWhy_love());
-        }else{
-            detail_why_love_textview.setText("");
-            detail_why_love_title_textview.setText("");
-        }
     }
 
+
+    private void setClickListener(){
+
+        detail_description_textview.setVisibility(View.GONE);
+        detail_business_diffrences_textview.setVisibility(View.GONE);
+        detail_learning_trade_textview.setVisibility(View.GONE);
+        detail_why_love_textview.setVisibility(View.GONE);
+
+        detail_business_diffrences_title_textview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(detail_business_diffrences_textview.getVisibility()!=view.VISIBLE)
+                    detail_business_diffrences_textview.setVisibility(View.VISIBLE);
+                else detail_business_diffrences_textview.setVisibility(View.GONE);
+            }
+        });
+        detail_learning_trade_title_textview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(detail_learning_trade_textview.getVisibility()!=view.VISIBLE)
+                    detail_learning_trade_textview.setVisibility(View.VISIBLE);
+                else detail_learning_trade_textview.setVisibility(View.GONE);
+            }
+        });
+        detail_why_love_title_textview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(detail_why_love_textview.getVisibility()!=view.VISIBLE)
+                    detail_why_love_textview.setVisibility(View.VISIBLE);
+                else detail_why_love_textview.setVisibility(View.GONE);
+            }
+        });
+        detail_description_title_textview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(detail_description_textview.getVisibility()!=view.VISIBLE)
+                    detail_description_textview.setVisibility(View.VISIBLE);
+                else detail_description_textview.setVisibility(View.GONE);
+            }
+        });
+
+    }
 }
