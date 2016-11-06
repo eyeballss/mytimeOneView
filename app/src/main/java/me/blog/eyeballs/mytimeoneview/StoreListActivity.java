@@ -13,7 +13,8 @@ import me.blog.eyeballs.mytimeoneview.stores_list.Adapter;
 public class StoreListActivity extends AppCompatActivity implements DataAccessible {
 
     //검색은 search view를 이용하면 되겠군.
-    static Adapter storesListAdapter;
+//    static Adapter storesListAdapter;
+    Adapter storesListAdapter;
     ListView storesList;
 
     @Override
@@ -26,22 +27,26 @@ public class StoreListActivity extends AppCompatActivity implements DataAccessib
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setList();
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        storesListAdapter.notifyDataSetChanged();
+//    }
 
     private void setList() {
-        if(storesListAdapter != null) {
-            storesListAdapter.notifyDataSetChanged();
-            return;
-        }
-        else {
-            storesListAdapter = new Adapter(this);
-            storesList = (ListView) findViewById(R.id.store_listview);
-            storesList.setAdapter(storesListAdapter);
-        }
+        storesListAdapter = new Adapter(this);
+        storesList = (ListView) findViewById(R.id.store_listview);
+        storesList.setAdapter(storesListAdapter);
+
+//        if(storesListAdapter != null) {
+//            storesListAdapter.clear();
+//            return;
+//        }
+//        else {
+//            storesListAdapter = new Adapter(this);
+//            storesList = (ListView) findViewById(R.id.store_listview);
+//            storesList.setAdapter(storesListAdapter);
+//        }
     }
 
     protected void jsonToJava(){

@@ -155,6 +155,10 @@ public class Data {
         return company.getWhy_love();
     }
 
+    public String getDescription(){
+        return company.getDescription();
+    }
+
     //generate
     static public Data generateData(JSONObject jObject) throws JSONException {
         Data data = new Data();
@@ -166,11 +170,11 @@ public class Data {
         //I didn't use 'keys()'
         if (jObject.getJSONObject("modifiers_values").has(" Type of Massage"))
             for (int i = 0; i < jObject.getJSONObject("modifiers_values").getJSONArray(" Type of Massage").length(); i++)
-                data.info.addServiceName(jObject.getJSONObject("modifiers_values").getJSONArray(" Type of Massage").getString(i));
+                data.info.addServiceNames(jObject.getJSONObject("modifiers_values").getJSONArray(" Type of Massage").getString(i));
 
         if (jObject.getJSONObject("modifiers_values").has("Duration"))
             for (int i = 0; i < jObject.getJSONObject("modifiers_values").getJSONArray("Duration").length(); i++)
-                data.info.addServiceName(jObject.getJSONObject("modifiers_values").getJSONArray("Duration").getString(i));
+                data.info.addDuration(jObject.getJSONObject("modifiers_values").getJSONArray("Duration").getString(i));
 
         if (jObject.has("street_address"))
             data.info.setStreet_address(jObject.getString("street_address"));
@@ -197,7 +201,7 @@ public class Data {
 
         if (jObject.has("photo_urls"))
             for (int i = 0; i < jObject.getJSONArray("photo_urls").length(); i++)
-                data.info.addServiceName(jObject.getJSONArray("photo_urls").getString(i));
+                data.info.addPhoto_urls(jObject.getJSONArray("photo_urls").getString(i));
         if (jObject.has("min_price"))
             data.info.setMin_price(jObject.getDouble("min_price"));
         if (jObject.has("max_price"))
@@ -209,6 +213,9 @@ public class Data {
             data.info.setDefault_photo_slate_black(jObject.getString("default_photo_slate_black"));
         if (jObject.has("service_name"))
             data.info.setService_name(jObject.getString("service_name"));
+        if (jObject.has("next_appointment_times"))
+            for (int i = 0; i < jObject.getJSONArray("next_appointment_times").length(); i++)
+                data.info.addNext_appointment_times(jObject.getJSONArray("next_appointment_times").getString(i));
         if (jObject.has("locations_count"))
             data.info.setLocations_count(jObject.getInt("locations_count"));
 
@@ -274,7 +281,7 @@ class Info {
 
     private String photo_url;
     private String name;
-    private ArrayList<String> ServiceNames = new ArrayList<String>();
+    private ArrayList<String> serviceNames = new ArrayList<String>();
     private ArrayList<String> duration = new ArrayList<String>();
 
     private String street_address;
@@ -446,7 +453,7 @@ class Info {
 
 
     public ArrayList<String> getServiceNames() {
-        return ServiceNames;
+        return serviceNames;
     }
 
     public ArrayList<String> getDuration() {
@@ -461,8 +468,8 @@ class Info {
         return next_appointment_times;
     }
 
-    public void addServiceName(String str) {
-        this.ServiceNames.add(str);
+    public void addServiceNames(String str) {
+        this.serviceNames.add(str);
     }
 
     public void addDuration(String str) {

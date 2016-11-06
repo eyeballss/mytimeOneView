@@ -69,6 +69,10 @@ public class Adapter extends BaseAdapter implements DataAccessible{
 //        holder.service_name.setText(data.getService_name());
 //        holder.price.setText(data.getMin_price()+" - "+data.getMax_price());
 
+        //review number
+        // 0 : no reviews
+        // 1 : mytime review
+        // 2 : yelp review
         int reviewNumber=0;
         {
             int myTime=data.mytime_getReview_count();
