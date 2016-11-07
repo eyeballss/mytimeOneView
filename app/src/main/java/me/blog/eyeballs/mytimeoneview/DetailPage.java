@@ -65,7 +65,7 @@ public class DetailPage extends AppCompatActivity implements DataAccessible{
 
         data= datas.get(dataNumber);
 
-        viewPager = (ViewPager)findViewById(R.id.detail_viewpager);
+        viewPager = (ViewPager)findViewById(R.id.detail_image_viewpager);
         if(data.getPhoto_urls().size()!=0)
             viewpageAdapter= new ViewpageAdapter(getLayoutInflater(), data.getPhoto_urls());
         else
