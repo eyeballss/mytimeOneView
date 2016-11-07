@@ -6,7 +6,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,7 +24,6 @@ public class DetailPage extends AppCompatActivity implements DataAccessible{
     TextView detail_business_diffrences_textview, detail_learning_trade_textview,detail_why_love_textview;
     TextView detail_business_diffrences_title_textview, detail_learning_trade_title_textview, detail_why_love_title_textview;
     ImageView detail_stars;
-    LinearLayout detail_background_layout;
 
     ViewPager viewPager;
     ViewpageAdapter viewpageAdapter;
@@ -61,7 +59,6 @@ public class DetailPage extends AppCompatActivity implements DataAccessible{
     // 2 : yelp review
     private void init(){
 
-        detail_background_layout = (LinearLayout)findViewById(R.id.detail_background_layout);
         Intent intent = getIntent();
         dataNumber=intent.getExtras().getInt("dataNumber");
         reviewNumber= intent.getExtras().getInt("reviewNumber");
@@ -69,7 +66,10 @@ public class DetailPage extends AppCompatActivity implements DataAccessible{
         data= datas.get(dataNumber);
 
         viewPager = (ViewPager)findViewById(R.id.detail_viewpager);
-        viewpageAdapter= new ViewpageAdapter(getLayoutInflater(), data.getPhoto_urls());
+        if(data.getPhoto_urls().size()!=0)
+            viewpageAdapter= new ViewpageAdapter(getLayoutInflater(), data.getPhoto_urls());
+        else
+            viewpageAdapter= new ViewpageAdapter(getLayoutInflater(), data.getDefault_photo_slate_black());
 
         detail_name = (TextView)findViewById(R.id.detail_name);
         detail_review_count = (TextView)findViewById(R.id.detail_review_count);
@@ -102,7 +102,6 @@ public class DetailPage extends AppCompatActivity implements DataAccessible{
     }
 
     private void setting(){
-        new ShowWebImage().setImageView(detail_background_layout).execute(data.getDefault_photo_slate_black());
 
         detail_name.setText(data.getName());
 

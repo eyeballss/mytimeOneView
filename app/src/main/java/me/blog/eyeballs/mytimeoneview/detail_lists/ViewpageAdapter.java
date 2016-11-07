@@ -21,9 +21,16 @@ public class ViewpageAdapter extends PagerAdapter {
     public ViewpageAdapter(LayoutInflater inflater, ArrayList<String> photo_urls) {
         // TODO Auto-generated constructor stub
 
-        //전달 받은 LayoutInflater를 멤버변수로 전달
         this.inflater=inflater;
         this.photo_urls = photo_urls;
+    }
+
+    public ViewpageAdapter(LayoutInflater inflater,String photo_url) {
+        // TODO Auto-generated constructor stub
+
+        this.inflater=inflater;
+        this.photo_urls = new ArrayList<String>();
+        this.photo_urls.add(photo_url);
     }
 
     @Override
