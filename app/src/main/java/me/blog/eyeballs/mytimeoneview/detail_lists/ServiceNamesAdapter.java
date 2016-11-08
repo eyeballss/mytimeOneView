@@ -20,12 +20,10 @@ public class ServiceNamesAdapter extends BaseAdapter {
 
     private ArrayList<String> serviceNames;
     private LayoutInflater inflater;
-    private Activity context;
 
     public ServiceNamesAdapter(Activity context, Data data) {
         super();
 
-        this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.serviceNames = data.getServiceNames();
     }
@@ -66,10 +64,6 @@ public class ServiceNamesAdapter extends BaseAdapter {
         }
 
         holder.serviceNameTextView.setText(serviceNames.get(i));
-
-//        convertView = inflater.inflate(R.layout.detail_list_item_service_names, null);
-//        TextView serviceNameTextView = (TextView)convertView.findViewById(R.id.detail_list_item_service_names_textview);
-//        serviceNameTextView.setText(serviceNames.get(i));
         return convertView;
     }
 }

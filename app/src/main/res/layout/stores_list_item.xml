@@ -5,11 +5,16 @@
     android:orientation="vertical">
 
     <TextView
+        android:typeface="sans"
         android:id="@+id/store_name"
         android:text="blah blah store"
+
         android:singleLine="true"
-        android:ellipsize="end"
-        android:marqueeRepeatLimit="3"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:focusable="false"
+        android:scrollHorizontally="true"
+
         android:textStyle="bold"
         android:textSize="15dp"
         android:layout_marginLeft="8dp"
@@ -36,6 +41,7 @@
             android:layout_marginBottom="4dp">
 
             <TextView
+                android:typeface="sans"
                 android:id="@+id/store_city_name"
                 android:text="Irvine"
                 android:singleLine="true"
@@ -46,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:typeface="sans"
                 android:id="@+id/store_service_name"
                 android:text="Massage"
                 android:singleLine="true"
@@ -55,6 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:typeface="sans"
                 android:id="@+id/store_price"
                 android:text="1-1000"
                 android:singleLine="true"
@@ -74,6 +82,7 @@
                     android:layout_width="80dp"
                     android:layout_height="15dp" />
                 <TextView
+                    android:typeface="sans"
                     android:id="@+id/store_review_count"
                     android:text="(1)"
                     android:singleLine="true"

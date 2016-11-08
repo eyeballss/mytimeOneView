@@ -20,12 +20,10 @@ public class DurationAdapter extends BaseAdapter{
 
     private ArrayList<String> duration;
     private LayoutInflater inflater;
-    private Activity context;
 
     public DurationAdapter(Activity context, Data data) {
         super();
 
-        this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.duration = data.getDuration();
     }

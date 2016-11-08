@@ -38,7 +38,7 @@ public class Adapter extends BaseAdapter implements DataAccessible{
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return datas.get(i);
     }
 
     @Override
@@ -58,16 +58,12 @@ public class Adapter extends BaseAdapter implements DataAccessible{
         TextView reviewCount = (TextView) convertView.findViewById(R.id.store_review_count);
 
         storeName.setText(data.getName());
+        storeName.setSelected(true);
         new ShowWebImage().setImageView(thumbnail).execute(data.getDefault_photo_thumb());
         cityName.setText(data.getCity());
         serviceName.setText(data.getService_name());
         price.setText("$ "+String.valueOf(data.getMin_price())+" - $ "+String.valueOf(data.getMax_price()));
 
-//        holder.title.setText(data.getName());
-//        showWebImage.setImageView(holder.thumbnail).execute(data.getDefault_photo_thumb());
-//        holder.city_name.setText(data.getCity());
-//        holder.service_name.setText(data.getService_name());
-//        holder.price.setText(data.getMin_price()+" - "+data.getMax_price());
 
         //review number
         // 0 : no reviews
@@ -129,40 +125,10 @@ public class Adapter extends BaseAdapter implements DataAccessible{
 
     }
 
-    public static class ViewHolder {
-        TextView title;
-        ImageView thumbnail;
-        TextView city_name;
-        TextView service_name;
-        TextView price;
-        ImageView stars;
-        TextView review_count;
-    }
-
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
 
         convertView = inflater.inflate(R.layout.stores_list_item, null);
-
-//        ViewHolder holder;
-//        if(convertView ==null){
-//            holder = new ViewHolder();
-//            convertView = inflater.inflate(R.layout.stores_list_item, null);
-//
-//            holder.title = (TextView) convertView.findViewById(R.id.title);
-//            holder.thumbnail = (ImageView) convertView.findViewById(R.id.thumbnail);
-//            holder.city_name = (TextView) convertView.findViewById(R.id.city_name);
-//            holder.service_name = (TextView) convertView.findViewById(R.id.service_name);
-//            holder.price = (TextView) convertView.findViewById(R.id.price);
-//            holder.stars = (ImageView) convertView.findViewById(R.id.stars);
-//            holder.review_count = (TextView) convertView.findViewById(R.id.review_count);
-//
-//
-//            convertView.setTag(holder);
-//        }
-//        else{
-//            holder = (ViewHolder)convertView.getTag();
-//        }
 
         init(i, convertView);
 

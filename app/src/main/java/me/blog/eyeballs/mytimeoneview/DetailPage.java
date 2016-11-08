@@ -1,20 +1,14 @@
 package me.blog.eyeballs.mytimeoneview;
 
-import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import me.blog.eyeballs.mytimeoneview.detail_lists.ImageViewpageAdapter;
 import me.blog.eyeballs.mytimeoneview.detail_lists.InfoViewpageAdapter;
@@ -93,6 +87,7 @@ public class DetailPage extends AppCompatActivity implements DataAccessible{
     private void setting(){
 
         detail_name.setText(data.getName());
+        detail_name.setSelected(true);
 
         //review number
         // 0 : no reviews
@@ -141,85 +136,6 @@ public class DetailPage extends AppCompatActivity implements DataAccessible{
                 break;
         }
     }
-
-
-    private void call() {
-
-
-                /**
-                 *  현재 사용자의 OS버전이 마시멜로우 인지 체크한다.
-                 */
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-                    /**
-                     *  사용자 단말기의 권한 중 전화걸기 권한이 허용되어 있는지 체크한다.
-                     */
-                    int permissionResult = checkSelfPermission(Manifest.permission.CALL_PHONE);
-
-                    // call_phong의 권한이 없을 떄
-                    if (permissionResult == PackageManager.PERMISSION_DENIED) {
-                        //  Package는 Android Application의 ID이다.
-                        /**
-                         *  사용자가 CALL_PHONE 권한을 한번이라도 거부한 적이 있는지 조사한다.
-                         *  거부한 이력이 한번이라도 있다면, true를 리턴한다.
-                         *  거부한 이력이 없다면 false를 리턴한다.
-                         */
-                        if (shouldShowRequestPermissionRationale(Manifest.permission.CALL_PHONE)) {
-
-                            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-                            dialog.setTitle("권한이 필요합니다.")
-                                    .setMessage("이 기능을 사용하기 위해서는 단말기의 \"전화걸기\"권한이 필요합니다. 계속하시겠습니까?")
-                                    .setPositiveButton("네", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            // 위 리스너랑 다른 범위여서 마쉬멜로우인지 또 체크해주어야 한다.
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, 1000);
-                                            }
-                                        }
-                                    })
-                                    .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(getApplicationContext(), "기능을 취소했습니다.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    })
-                                    .create()
-                                    .show();
-
-                        }
-                        // 최초로 권한을 요청 할 때
-                        else {
-                            // CALL_PHONE 권한을 안드로이드 OS에 요청합니다.
-                            requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, 1000);
-                        }
-                    }
-                    // call_phonne의 권한이 있을 떄
-                    else {
-                        if (data.getPhone_number() != null && !data.getPhone_number().equals("")) {
-                            Intent intentForCall= new Intent(Intent.ACTION_CALL, Uri.parse(data.getPhone_number()) );
-                            startActivity(intentForCall);
-                        } else {
-                            Toast.makeText(this, "There is no phone number.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                }
-                // 사용자의 버전이 마시멜로우 이하일때
-                else {
-
-                    if (data.getPhone_number() != null && !data.getPhone_number().equals("")) {
-                        Intent intentForCall= new Intent(Intent.ACTION_CALL, Uri.parse(data.getPhone_number()) );
-                        startActivity(intentForCall);
-                    } else {
-                        Toast.makeText(this, "There is no phone number.", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-
-    }
-
-
 }
 
 

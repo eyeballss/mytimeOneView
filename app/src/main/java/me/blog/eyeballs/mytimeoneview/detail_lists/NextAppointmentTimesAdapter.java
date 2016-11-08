@@ -19,12 +19,10 @@ import me.blog.eyeballs.mytimeoneview.R;
 public class NextAppointmentTimesAdapter extends BaseAdapter {
     private ArrayList<String> nextAppointmentTimes;
     private LayoutInflater inflater;
-    private Activity context;
 
     public NextAppointmentTimesAdapter(Activity context, Data data) {
         super();
 
-        this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.nextAppointmentTimes = data.getNext_appointment_times();
     }
@@ -63,7 +61,8 @@ public class NextAppointmentTimesAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.nextAppointmentTimesTextView.setText(nextAppointmentTimes.get(i));
+        String str = nextAppointmentTimes.get(i).replaceAll("T", " ").replaceAll("Z", " ");
+        holder.nextAppointmentTimesTextView.setText(str);
 
         return convertView;
     }

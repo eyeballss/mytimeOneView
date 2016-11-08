@@ -10,12 +10,15 @@
             android:weightSum="39">
 
             <TextView
+                android:typeface="sans"
                 android:id="@+id/detail_service_names_textview"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="5dp"
                 android:layout_weight="3"
-                android:text="service_names" />
+                android:textSize="13dp"
+                android:textColor="#222222"
+                android:text="Service names" />
 
 
             <RelativeLayout
@@ -35,10 +38,13 @@
 
 
             <TextView
+                android:typeface="sans"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="5dp"
                 android:layout_weight="3"
+                android:textSize="13dp"
+                android:textColor="#222222"
                 android:text="Duration" />
 
             <RelativeLayout
@@ -56,10 +62,13 @@
             </RelativeLayout>
 
             <TextView
+                android:typeface="sans"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="5dp"
                 android:layout_weight="3"
+                android:textSize="13dp"
+                android:textColor="#222222"
                 android:text="Next Appointment Times" />
 
             <RelativeLayout

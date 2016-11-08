@@ -227,19 +227,16 @@ public class InfoViewpageAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         // TODO Auto-generated method stub
-//        if(position>=photo_urls.size()) return null;
 
         View view=null;
 
         if(position==0) {
             view = inflater.inflate(R.layout.detail_info_viewpager_book_item, null);
 
-            //do something
             bookInformationPage(view);
         }else{ //position ==1
             view = inflater.inflate(R.layout.detail_info_viewpager_about_item, null);
 
-            //do something
             aboutPage(view);
         }
 

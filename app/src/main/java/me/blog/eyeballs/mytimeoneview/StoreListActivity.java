@@ -12,8 +12,6 @@ import me.blog.eyeballs.mytimeoneview.stores_list.Adapter;
 
 public class StoreListActivity extends AppCompatActivity implements DataAccessible {
 
-    //검색은 search view를 이용하면 되겠군.
-//    static Adapter storesListAdapter;
     Adapter storesListAdapter;
     ListView storesList;
 
@@ -27,35 +25,19 @@ public class StoreListActivity extends AppCompatActivity implements DataAccessib
 
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        storesListAdapter.notifyDataSetChanged();
-//    }
-
     private void setList() {
         storesListAdapter = new Adapter(this);
         storesList = (ListView) findViewById(R.id.store_listview);
         storesList.setAdapter(storesListAdapter);
-
-//        if(storesListAdapter != null) {
-//            storesListAdapter.clear();
-//            return;
-//        }
-//        else {
-//            storesListAdapter = new Adapter(this);
-//            storesList = (ListView) findViewById(R.id.store_listview);
-//            storesList.setAdapter(storesListAdapter);
-//        }
     }
 
     protected void jsonToJava(){
 
         try {
-            JSONArray jarray = new JSONArray(RawData.rawData);   // JSONArray 생성
+            JSONArray jarray = new JSONArray(RawData.rawData);   // JSONArray
             Data tempData;
             for(int i=0; i < jarray.length(); i++){
-                JSONObject jObject = jarray.getJSONObject(i);  // JSONObject 추출
+                JSONObject jObject = jarray.getJSONObject(i);  // JSONObject
 
                 tempData = Data.generateData(jObject);
                 datas.add(tempData);
