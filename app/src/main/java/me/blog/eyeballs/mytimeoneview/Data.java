@@ -6,6 +6,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Created by eye on 16. 10. 24.
@@ -16,6 +18,23 @@ public class Data {
     private MyTime myTime = new MyTime();
     private Google google = new Google();
     private Yelp yelp = new Yelp();
+
+    private ArrayList<Integer> searchResultList = new ArrayList<Integer>();
+    private HashMap<Integer, Integer> searchResultMap = new HashMap<Integer, Integer>();
+
+    //control searchResultsList , and searchResultMap
+    public void addResultToList(int i){
+        searchResultList.add(i);
+    }
+
+    public void cleanSearchResultList(){
+        searchResultList.clear();
+    }
+
+    public Iterator<Integer> getSearchResult(){
+        return searchResultList.iterator();
+    }
+
 
     //getters
 
