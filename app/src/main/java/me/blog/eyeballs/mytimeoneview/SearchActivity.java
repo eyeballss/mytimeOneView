@@ -1,9 +1,11 @@
 package me.blog.eyeballs.mytimeoneview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -76,12 +78,39 @@ public class SearchActivity extends AppCompatActivity implements DataAccessible 
     }
 
     private void searchByQuery(){
+
+//        if(!cityNameChecker && !storeNameChecker){
+//            for(int i=0; i<datas.size(); i++){
+//                searchResultList.add(i);
+//            }
+//            showStoreListActivity();
+//            return;
+//        }
+
         String storeNameQuery = search_name.getQuery().toString().trim().replaceAll(" ","").toUpperCase();
         String cityNameQuery = search_city.getQuery().toString().trim().replaceAll(" ","").toUpperCase();
 
         resultBySearchList = (ArrayList<Integer>) searchByStoreName(storeNameQuery);
         resultBySearchList = (ArrayList<Integer>) searchByCityName(cityNameQuery, resultBySearchList);
 
+        if(resultBySearchList.size()==0){
+            Toast.makeText(getApplicationContext(), "No Result", Toast.LENGTH_SHORT).show();
+        }else{
+            for(int i=0; i<resultBySearchList.size(); i++){
+                searchResultList.add(resultBySearchList.get(i));
+            }
+
+            showStoreListActivity();
+
+
+        }
+    }
+
+    private void showStoreListActivity(){
+        Intent intent = new Intent(this, StoreListActivity.class);
+        startActivity(intent);
+        if(resultBySearchList!=null)
+            resultBySearchList.clear();
     }
 
 
@@ -89,9 +118,10 @@ public class SearchActivity extends AppCompatActivity implements DataAccessible 
 
         switch (v.getId()){
             case R.id.search_button:
-            if(search_name.getQuery()!=null && search_name.getQuery().toString().trim().length()!=0){
+//            if(search_name.getQuery()!=null && search_name.getQuery().toString().trim().length()!=0){
+//                searchByQuery();
+//            }
                 searchByQuery();
-            }
             break;
         }
     }
@@ -116,10 +146,13 @@ public class SearchActivity extends AppCompatActivity implements DataAccessible 
     }
 
     private List searchByStoreName(String query){
+        ArrayList<Integer> gatherer = new ArrayList<Integer>();
         if(!storeNameChecker){
-            return datas;
+            for(int i=0; i<datas.size(); i++){
+                gatherer.add(i);
+            }
+
         }else{
-            ArrayList<Integer> gatherer = new ArrayList<Integer>();
             String temp;
             for(int i=0; i<datas.size(); i++){
                 temp = datas.get(i).getName().trim().replaceAll(" ","").toUpperCase();
@@ -127,16 +160,15 @@ public class SearchActivity extends AppCompatActivity implements DataAccessible 
                     gatherer.add(i);
                 }//if
             }//for
-            return gatherer;
         }//else
+        return gatherer;
     }
 
 
-
-
-
-    private void cleanSearchList(){
-        resultBySearchList.clear();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        searchResultList.clear();
     }
 
     protected void jsonToJava(){

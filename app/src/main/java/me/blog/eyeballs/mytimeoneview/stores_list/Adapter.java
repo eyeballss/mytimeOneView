@@ -33,12 +33,12 @@ public class Adapter extends BaseAdapter implements DataAccessible{
 
     @Override
     public int getCount() {
-        return datas.size();
+        return searchResultList.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return datas.get(i);
+        return datas.get(searchResultList.get(i));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class Adapter extends BaseAdapter implements DataAccessible{
     }
 
     public void init(int i, View convertView) {
-        Data data = datas.get(i); //store's data
+        Data data = datas.get(searchResultList.get(i)); //store's data
 
         TextView storeName = (TextView) convertView.findViewById(R.id.store_name);
         ImageView thumbnail = (ImageView) convertView.findViewById(R.id.store_thumbnail);
@@ -117,7 +117,7 @@ public class Adapter extends BaseAdapter implements DataAccessible{
         Intent intent = new Intent(context, DetailPage.class);
 
         //data number : to find data in the data array.
-        intent.putExtra("dataNumber", i);
+        intent.putExtra("dataNumber", searchResultList.get(i));
 
         //review number : to find what company's review is valuable.
         intent.putExtra("reviewNumber", reviewNumber);

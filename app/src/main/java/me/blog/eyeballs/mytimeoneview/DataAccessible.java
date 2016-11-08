@@ -8,5 +8,5 @@ import java.util.ArrayList;
 public interface DataAccessible {
 
     ArrayList<Data> datas = new ArrayList<Data>();
-
+    ArrayList<Integer> searchResultList = new ArrayList<Integer>();
 }
