@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +41,7 @@ public class SearchActivity extends AppCompatActivity implements DataAccessible 
         search_name.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) { //문자열 입력을 완료했을 때 문자열 반환
-                searchByQuery(query.trim().toUpperCase());
+                searchByQuery();
                 return false;
             }
 
@@ -60,7 +59,7 @@ public class SearchActivity extends AppCompatActivity implements DataAccessible 
         search_city.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                searchByQuery(s);
+                searchByQuery();
                 return false;
             }
 
@@ -76,38 +75,54 @@ public class SearchActivity extends AppCompatActivity implements DataAccessible 
         });
     }
 
+    private void searchByQuery(){
+        String storeNameQuery = search_name.getQuery().toString().trim().replaceAll(" ","").toUpperCase();
+        String cityNameQuery = search_city.getQuery().toString().trim().replaceAll(" ","").toUpperCase();
+
+        resultBySearchList = (ArrayList<Integer>) searchByStoreName(storeNameQuery);
+        resultBySearchList = (ArrayList<Integer>) searchByCityName(cityNameQuery, resultBySearchList);
+
+    }
+
 
     public void search_bottom_button_onclick(View v){
 
         switch (v.getId()){
             case R.id.search_button:
             if(search_name.getQuery()!=null && search_name.getQuery().toString().trim().length()!=0){
-                searchByQuery(search_name.getQuery().toString());
+                searchByQuery();
             }
             break;
         }
     }
 
-    private void searchByQuery(String query){
-        query = query.trim().replaceAll(" ","").toUpperCase();
-        Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT).show();
-        resultBySearchList = (ArrayList<Integer>)searchByStoreName(query);
 
-        //for loop for testing
-        for(int i=0; i<resultBySearchList.size(); i++){
-            System.out.println(datas.get(resultBySearchList.get(i)).getName());
-        }
-//        storeNameChecker, cityNameChecker;
+
+    private List searchByCityName(String query, ArrayList<Integer> list){
+
+        if(!cityNameChecker){
+            return list;
+        }else{
+            ArrayList<Integer> gatherer = new ArrayList<Integer>();
+            String temp;
+            for(int i=0; i<list.size(); i++){
+                temp = datas.get(list.get(i)).getCity().trim().replaceAll(" ","").toUpperCase();
+                if(temp.contains(query)){
+                    gatherer.add(list.get(i));
+                }//if
+            }//for
+            return gatherer;
+        }//else
     }
 
     private List searchByStoreName(String query){
         if(!storeNameChecker){
-            return new ArrayList<Integer>();
+            return datas;
         }else{
             ArrayList<Integer> gatherer = new ArrayList<Integer>();
             String temp;
             for(int i=0; i<datas.size(); i++){
-                temp = datas.get(i).getName().trim().toUpperCase();
+                temp = datas.get(i).getName().trim().replaceAll(" ","").toUpperCase();
                 if(temp.contains(query)){
                     gatherer.add(i);
                 }//if
