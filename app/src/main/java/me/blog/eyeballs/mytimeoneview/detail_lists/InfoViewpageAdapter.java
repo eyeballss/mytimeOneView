@@ -18,8 +18,9 @@ public class InfoViewpageAdapter extends PagerAdapter {
 
 
     TextView detail_description_textview, detail_description_title_textview;
-    TextView detail_business_diffrences_textview, detail_learning_trade_textview,detail_why_love_textview;
+    TextView detail_business_diffrences_textview, detail_learning_trade_textview, detail_why_love_textview;
     TextView detail_business_diffrences_title_textview, detail_learning_trade_title_textview, detail_why_love_title_textview;
+    TextView detail_address, detail_phone_number, detail_website;
 
     ServiceNamesAdapter serviceNamesAdapter;
     ListView serviceNamesList;
@@ -27,6 +28,7 @@ public class InfoViewpageAdapter extends PagerAdapter {
     ListView durationList;
     NextAppointmentTimesAdapter nextAppointmentTimesAdapter;
     ListView nextAppointmentTimesList;
+
 
     LayoutInflater inflater;
     Activity activity;
@@ -36,25 +38,24 @@ public class InfoViewpageAdapter extends PagerAdapter {
     public InfoViewpageAdapter(LayoutInflater inflater, Data data, Activity activity) {
         // TODO Auto-generated constructor stub
         this.data = data;
-        this.inflater=inflater;
-        this.activity=activity;
+        this.inflater = inflater;
+        this.activity = activity;
     }
 
 
-
-    private void bookInformationPage(View view){
+    private void bookInformationPage(View view) {
         init(view, 0);
         setting(view, 0);
     }
 
-    private void aboutPage(View view){
+    private void aboutPage(View view) {
         init(view, 1);
         setting(view, 1);
         //to show the descriptors or not by click
         setClickListener(view, 1);
     }
 
-    private void init(View view , int page){
+    private void init(View view, int page) {
         switch (page) {
             //left page, bookInformationPage
             case 0:
@@ -67,65 +68,102 @@ public class InfoViewpageAdapter extends PagerAdapter {
                 durationList.setAdapter(durationAdapter);
 
                 nextAppointmentTimesAdapter = new NextAppointmentTimesAdapter(activity, data);
-                nextAppointmentTimesList = (ListView)view.findViewById(R.id.detail_next_appointment_times_listview);
+                nextAppointmentTimesList = (ListView) view.findViewById(R.id.detail_next_appointment_times_listview);
                 nextAppointmentTimesList.setAdapter(nextAppointmentTimesAdapter);
 
                 break;
             //right page, aboutPage
             case 1:
-                detail_description_textview = (TextView)view.findViewById(R.id.detail_description_textview);
-                detail_description_title_textview = (TextView)view.findViewById(R.id.detail_description_title_textview);
-                detail_business_diffrences_textview = (TextView)view.findViewById(R.id.detail_business_diffrences_textview);
-                detail_learning_trade_textview = (TextView)view.findViewById(R.id.detail_learning_trade_textview);
-                detail_why_love_textview = (TextView)view.findViewById(R.id.detail_why_love_textview);
-                detail_business_diffrences_title_textview = (TextView)view.findViewById(R.id.detail_business_diffrences_title_textview);
-                detail_learning_trade_title_textview = (TextView)view.findViewById(R.id.detail_learning_trade_title_textview);
-                detail_why_love_title_textview = (TextView)view.findViewById(R.id.detail_why_love_title_textview);
+                detail_description_textview = (TextView) view.findViewById(R.id.detail_description_textview);
+                detail_description_title_textview = (TextView) view.findViewById(R.id.detail_description_title_textview);
+                detail_business_diffrences_textview = (TextView) view.findViewById(R.id.detail_business_diffrences_textview);
+                detail_learning_trade_textview = (TextView) view.findViewById(R.id.detail_learning_trade_textview);
+                detail_why_love_textview = (TextView) view.findViewById(R.id.detail_why_love_textview);
+                detail_business_diffrences_title_textview = (TextView) view.findViewById(R.id.detail_business_diffrences_title_textview);
+                detail_learning_trade_title_textview = (TextView) view.findViewById(R.id.detail_learning_trade_title_textview);
+                detail_why_love_title_textview = (TextView) view.findViewById(R.id.detail_why_love_title_textview);
+                detail_address = (TextView) view.findViewById(R.id.detail_address);
+                detail_phone_number = (TextView) view.findViewById(R.id.detail_phone_number);
+                detail_website = (TextView) view.findViewById(R.id.detail_website);
                 break;
         }
     }
 
-    private void setting(View view, int page){
-        switch(page){
+    private void setting(View view, int page) {
+        switch (page) {
             case 0:
                 break;
             case 1:
 
-                if(data.getDescription()!=null && !data.getDescription().trim().equals("")) {
-                    detail_description_title_textview.setText("About " + data.getName()+" ▼");
+                if (data.getDescription() != null && !data.getDescription().trim().equals("")) {
+                    detail_description_title_textview.setText("About " + data.getName() + " ▼");
                     detail_description_textview.setText(data.getDescription());
-                }else{
+                } else {
                     detail_description_textview.setVisibility(View.GONE);
                     detail_description_title_textview.setVisibility(View.GONE);
                 }
 
-                if(data.getBusiness_diffrences()!=null && !data.getBusiness_diffrences().trim().equals("") ){
+                if (data.getBusiness_diffrences() != null && !data.getBusiness_diffrences().trim().equals("")) {
                     detail_business_diffrences_textview.setText(data.getBusiness_diffrences());
-                }else{
+                } else {
                     detail_business_diffrences_title_textview.setVisibility(View.GONE);
                     detail_business_diffrences_textview.setVisibility(View.GONE);
                 }
 
-                if(data.getLearning_trade() !=null && !data.getLearning_trade().trim().equals("")){
+                if (data.getLearning_trade() != null && !data.getLearning_trade().trim().equals("")) {
                     detail_learning_trade_textview.setText(data.getLearning_trade());
-                }else{
+                } else {
                     detail_learning_trade_textview.setVisibility(View.GONE);
                     detail_learning_trade_title_textview.setVisibility(View.GONE);
                 }
 
-                if(data.getWhy_love() !=null && !data.getWhy_love().trim().equals("")){
+                if (data.getWhy_love() != null && !data.getWhy_love().trim().equals("")) {
                     detail_why_love_textview.setText(data.getWhy_love());
-                }else{
+                } else {
                     detail_why_love_textview.setVisibility(View.GONE);
                     detail_why_love_title_textview.setVisibility(View.GONE);
+                }
+
+                StringBuilder address = new StringBuilder();
+                if (data.getStreet_address() != null && !data.getStreet_address().equals("")) {
+                    address.append(data.getStreet_address() + " ");
+                }
+                if (data.getState() != null && !data.getState().equals("")) {
+                    address.append(data.getState() + " ");
+                }
+                if (data.getCity() != null && !data.getCity().equals("")) {
+                    address.append(data.getCity() + " ");
+                }
+                if (data.getZip() != null && !data.getZip().equals("")) {
+                    address.append(data.getZip());
+                }
+
+                if (address.length() != 0) {
+                    detail_address.setText(address.toString());
+                } else {
+                    detail_address.setVisibility(View.GONE);
+                }
+
+                if (data.getPhone_number() != null && !data.getPhone_number().equals("")) {
+                    detail_phone_number.setText(data.getPhone_number());
+                } else {
+                    detail_phone_number.setVisibility(View.GONE);
+                }
+
+                if (data.getWebsite() != null && !data.getWebsite().equals("")) {
+                    detail_website.setText(data.getWebsite());
+                } else if (data.getBitly_url() != null && !data.getBitly_url().equals("")) {
+                    detail_website.setText(data.getBitly_url());
+                } else {
+                    detail_website.setVisibility(View.GONE);
                 }
 
                 break;
         }
     }
 
-    private void setClickListener(View view , int page){
-        switch(page){
+    private void setClickListener(View view, int page) {
+        switch (page) {
             case 0:
                 break;
             case 1:
@@ -138,7 +176,7 @@ public class InfoViewpageAdapter extends PagerAdapter {
                 detail_business_diffrences_title_textview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(detail_business_diffrences_textview.getVisibility()!=view.VISIBLE)
+                        if (detail_business_diffrences_textview.getVisibility() != view.VISIBLE)
                             detail_business_diffrences_textview.setVisibility(View.VISIBLE);
                         else detail_business_diffrences_textview.setVisibility(View.GONE);
                     }
@@ -146,7 +184,7 @@ public class InfoViewpageAdapter extends PagerAdapter {
                 detail_learning_trade_title_textview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(detail_learning_trade_textview.getVisibility()!=view.VISIBLE)
+                        if (detail_learning_trade_textview.getVisibility() != view.VISIBLE)
                             detail_learning_trade_textview.setVisibility(View.VISIBLE);
                         else detail_learning_trade_textview.setVisibility(View.GONE);
                     }
@@ -154,7 +192,7 @@ public class InfoViewpageAdapter extends PagerAdapter {
                 detail_why_love_title_textview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(detail_why_love_textview.getVisibility()!=view.VISIBLE)
+                        if (detail_why_love_textview.getVisibility() != view.VISIBLE)
                             detail_why_love_textview.setVisibility(View.VISIBLE);
                         else detail_why_love_textview.setVisibility(View.GONE);
                     }
@@ -162,7 +200,7 @@ public class InfoViewpageAdapter extends PagerAdapter {
                 detail_description_title_textview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(detail_description_textview.getVisibility()!=view.VISIBLE)
+                        if (detail_description_textview.getVisibility() != view.VISIBLE)
                             detail_description_textview.setVisibility(View.VISIBLE);
                         else detail_description_textview.setVisibility(View.GONE);
                     }

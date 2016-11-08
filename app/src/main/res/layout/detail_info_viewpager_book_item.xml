@@ -2,45 +2,86 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-
+            android:orientation="vertical"
+            android:weightSum="39">
 
             <TextView
                 android:id="@+id/detail_service_names_textview"
-                android:text="service_names"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <ListView
-                android:id="@+id/detail_service_names_listview"
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
-            <TextView
-                android:text="Duration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <ListView
-                android:id="@+id/detail_duration_listview"
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
-            <TextView
-                android:text="Next Appointment Times"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <ListView
-                android:id="@+id/detail_next_appointment_times_listview"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"/>
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="3"
+                android:text="service_names" />
 
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="9"
+                android:background="#2D8B9E">
+
+                <ListView
+                    android:id="@+id/detail_service_names_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:background="#FFFFFF" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="3"
+                android:text="Duration" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="9"
+                android:background="#2D8B9E">
+
+                <ListView
+                    android:id="@+id/detail_duration_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:background="#FFFFFF" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="3"
+                android:text="Next Appointment Times" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="9"
+                android:background="#2D8B9E">
+
+                <ListView
+                    android:id="@+id/detail_next_appointment_times_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:background="#FFFFFF" />
+            </RelativeLayout>
 
         </LinearLayout>
-    </ScrollView>
+
+
+
+
+
+
+
 </LinearLayout>

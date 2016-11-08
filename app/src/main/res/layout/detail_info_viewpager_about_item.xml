@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:orientation="vertical">
 
             <TextView
@@ -18,13 +19,21 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:text="111-111-1111"
+                android:layout_below="@+id/detail_address"
                 android:id="@+id/detail_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/detail_website"
+                android:layout_below="@+id/detail_phone_number"
+                android:text="http://eyeballss.blog.me"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
 
             <TextView
                 android:id="@+id/detail_description_title_textview"
+                android:layout_below="@+id/detail_website"
                 android:text="About this store ▼"
                 android:layout_margin="3dp"
                 android:textSize="15dp"
@@ -32,12 +41,14 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/detail_description_textview"
+                android:layout_below="@+id/detail_description_title_textview"
                 android:layout_marginLeft="10dp"
                 android:text="we have a good service."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/detail_business_diffrences_title_textview"
+                android:layout_below="@+id/detail_description_textview"
                 android:text="What What differentiates us ▼"
                 android:layout_margin="3dp"
                 android:textSize="13dp"
@@ -45,12 +56,14 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/detail_business_diffrences_textview"
+                android:layout_below="@+id/detail_business_diffrences_title_textview"
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/detail_learning_trade_title_textview"
+                android:layout_below="@+id/detail_business_diffrences_textview"
                 android:text="How we were trained ▼"
                 android:layout_margin="3dp"
                 android:textSize="13dp"
@@ -58,12 +71,14 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/detail_learning_trade_textview"
+                android:layout_below="@+id/detail_learning_trade_title_textview"
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/detail_why_love_title_textview"
+                android:layout_below="@+id/detail_learning_trade_textview"
                 android:text="Why we love what we do ▼"
                 android:layout_margin="3dp"
                 android:textSize="13dp"
@@ -71,12 +86,19 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/detail_why_love_textview"
+                android:layout_below="@+id/detail_why_love_title_textview"
                 android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_below="@+id/detail_why_love_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
 
 
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
-</LinearLayout>
+
+
+</RelativeLayout>
