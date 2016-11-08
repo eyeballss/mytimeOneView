@@ -1,39 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context="me.blog.eyeballs.mytimeoneview.SearchActivity">
 
+
     <TextView
+        android:id="@+id/Store_Name_textview"
         android:text="Store Name"
+        android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/search_name_searchview"
+        android:layout_centerHorizontal="true" />
     <SearchView
-        android:id="@+id/search_name"
+        android:id="@+id/search_name_searchview"
         android:queryHint="My Time"
         android:background="#FFFFFF"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="8dp"
         android:layout_width="200dp"
-        android:layout_height="50dp"/>
+        android:layout_height="50dp"
+        android:layout_above="@+id/search_city_textview"
+        android:layout_alignStart="@+id/search_city_searchview" />
     <TextView
+        android:id="@+id/search_city_textview"
         android:text="City Name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/search_city_searchview"
+        android:layout_alignEnd="@+id/Store_Name_textview" />
 
     <SearchView
-        android:id="@+id/search_location"
+        android:id="@+id/search_city_searchview"
         android:background="#FFFFFF"
-        android:layout_marginTop="8dp"
         android:queryHint="Los Angeles"
-        android:layout_marginBottom="100dp"
         android:layout_width="200dp"
-        android:layout_height="50dp"/>
-</LinearLayout>
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/search_button"
+        android:text="Search"
+        android:layout_alignParentBottom="true"
+        android:background="#cc2D8B9E"
+        android:onClick="search_bottom_button_onclick"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+
+
+</RelativeLayout>

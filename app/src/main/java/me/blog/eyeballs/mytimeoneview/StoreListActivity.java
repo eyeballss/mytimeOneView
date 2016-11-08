@@ -4,10 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import me.blog.eyeballs.mytimeoneview.stores_list.Adapter;
 
 public class StoreListActivity extends AppCompatActivity implements DataAccessible {
@@ -20,7 +16,6 @@ public class StoreListActivity extends AppCompatActivity implements DataAccessib
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_list);
 
-        jsonToJava();
         setList();
 
     }
@@ -30,22 +25,4 @@ public class StoreListActivity extends AppCompatActivity implements DataAccessib
         storesList = (ListView) findViewById(R.id.store_listview);
         storesList.setAdapter(storesListAdapter);
     }
-
-    protected void jsonToJava(){
-
-        try {
-            JSONArray jarray = new JSONArray(RawData.rawData);   // JSONArray
-            Data tempData;
-            for(int i=0; i < jarray.length(); i++){
-                JSONObject jObject = jarray.getJSONObject(i);  // JSONObject
-
-                tempData = Data.generateData(jObject);
-                datas.add(tempData);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }
