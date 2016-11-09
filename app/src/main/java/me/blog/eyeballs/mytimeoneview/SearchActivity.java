@@ -79,13 +79,6 @@ public class SearchActivity extends AppCompatActivity implements DataAccessible 
 
     private void searchByQuery(){
 
-//        if(!cityNameChecker && !storeNameChecker){
-//            for(int i=0; i<datas.size(); i++){
-//                searchResultList.add(i);
-//            }
-//            showStoreListActivity();
-//            return;
-//        }
         if(search_name.getQuery().toString().equals("My Time")){
             Intent intent = new Intent(this, SecretPage.class);
             startActivity(intent);
@@ -123,9 +116,6 @@ public class SearchActivity extends AppCompatActivity implements DataAccessible 
 
         switch (v.getId()){
             case R.id.search_button:
-//            if(search_name.getQuery()!=null && search_name.getQuery().toString().trim().length()!=0){
-//                searchByQuery();
-//            }
                 searchByQuery();
             break;
         }

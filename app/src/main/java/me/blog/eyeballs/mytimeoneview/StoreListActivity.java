@@ -16,8 +16,17 @@ public class StoreListActivity extends AppCompatActivity implements DataAccessib
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_list);
 
-        setList();
+    }
 
+    protected void onResume(){
+        super.onResume();
+        init();
+        setList();
+    }
+
+    private void init(){
+        if(storesListAdapter!=null) storesListAdapter=null;
+        if(storesList!=null) storesList=null;
     }
 
     private void setList() {
