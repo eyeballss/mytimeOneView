@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/home/eye/AndroidStudioProjects/MyTimeOneView/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="b8ecebb9fe8b2a9fd4d71c51eed4666e1b2b7e01">
+        <dex dex="/home/eye/AndroidStudioProjects/MyTimeOneView/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_dd1f220e23aa422e15d303d19d7220435dce38af.jar" />
+    </item>
+
+</items>

@@ -86,6 +86,11 @@ public class SearchActivity extends AppCompatActivity implements DataAccessible 
 //            showStoreListActivity();
 //            return;
 //        }
+        if(search_name.getQuery().toString().equals("My Time")){
+            Intent intent = new Intent(this, SecretPage.class);
+            startActivity(intent);
+            return;
+        }
 
         String storeNameQuery = search_name.getQuery().toString().trim().replaceAll(" ","").toUpperCase();
         String cityNameQuery = search_city.getQuery().toString().trim().replaceAll(" ","").toUpperCase();
