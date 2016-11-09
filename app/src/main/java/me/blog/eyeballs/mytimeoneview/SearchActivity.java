@@ -167,7 +167,7 @@ public class SearchActivity extends AppCompatActivity implements DataAccessible 
     }
 
     protected void jsonToJava(){
-
+        datas.clear();
         try {
             JSONArray jarray = new JSONArray(RawData.rawData);   // JSONArray
             Data tempData;
